@@ -9,7 +9,14 @@ Before this, I had to open several Excel files, copy numbers, save new versions,
 Now, it all runs automatically in a few seconds.
 
 ---
+### What I used
+- openpyxl
+- smtplib
+- os
+- SendGrid API
 
+---
+  
 ### What It Does  
 - **Updates Excel Scorecards** – Pulls data from source files (third-party website) and fills the correct cells automatically.  
 - **Sends Updated Reports by Email** – Uses SendGrid’s SMTP to email reports to multiple recipients.    
@@ -37,17 +44,26 @@ Together, these two scripts handle the full reporting workflow — from data upd
    
    pip install openpyxl pandas sendgrid python-dotenv
    
-2. Update your file paths and email info inside the scripts:
    
-  scorecard_path = "path/to/Scorecard.xlsx"
-  source_file_path = "path/to/source_file.xlsx"
-  sender_email = "your_verified_sendgrid_email"
-  api_key = "your_sendgrid_api_key"
+3. Update your file paths and email info inside the scripts:
+   
+     scorecard_path = "path/to/Scorecard.xlsx"
+  
+     source_file_path = "path/to/source_file.xlsx"
+  
+     sender_email = "your_verified_sendgrid_email"
+  
+     api_key = "your_sendgrid_api_key"
+   
 
-3. Run the scripts:
+5. Run the scripts:
    
    Scorecard_Automation.py
    
    Automated_Email_Report.py
    
+---
 
+### Futher Improvements
+
+- Upload to Databricks Workflow
