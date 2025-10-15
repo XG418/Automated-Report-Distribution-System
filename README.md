@@ -1,40 +1,53 @@
-# Automated-Reporting-Email-Notification-System
+# 📨 Automated Report Distribution System
 
-## Overview
-This is a small automation project I built to make my reporting process more efficient.
-The script automatically sends reports (Excel, PDF, or Word) through SendGrid’s SMTP server, so I don’t need to manually attach or send emails anymore.
+### Overview  
+This is a small project I built to make my reporting workflow more efficient.  
+It automatically updates scorecards with the latest metrics and then emails the finalized report to different departments using SendGrid.  
 
-I built this because my position has a lot of reports, and I need to send to a bunch of people the lastest version, which cost lots of time
+I originally built this at my company, where I often need to update and send reports to multiple teams.  
+Before this, I had to open several Excel files, copy numbers, save new versions, attach them, and email everyone manually.  
+Now, it all runs automatically in a few seconds.
 
-## What It Does
+---
 
-- Automatically sends emails through SendGrid SMTP
+### What It Does  
+- **Updates Excel Scorecards** – Pulls data from source files (third-party website) and fills the correct cells automatically.  
+- **Sends Updated Reports by Email** – Uses SendGrid’s SMTP to email reports to multiple recipients.    
+- **Clear Status Messages** – Prints success or error messages in the terminal.  
+- **Easy to Adjust** – You can change file paths, recipients, or email content easily.  
 
-- Supports any attachment type (Excel, PDF, Word, image, etc.)
+---
 
-- Prints clear success/error messages in the terminal
+### How It Works  
+1. **`Scorecard_Automation.py`**  
+   - Reads data from different Excel reports  
+   - Updates the main scorecard automatically using `openpyxl`  
+   - Saves a new version (for example `Scorecard_Updated.xlsx`)  
 
-- Easy to modify for different recipients or message content
+2. **`Automated_Email_Report.py`**  
+   - Sends the updated report to department leads  
+   - Uses SendGrid SMTP and supports attachments of any type  
 
-- Can be integrated into a larger data pipeline (like Databricks or Airflow jobs)
+Together, these two scripts handle the full reporting workflow — from data update to delivery.
 
-## How to Use
+---
 
-- Install Python's libraries
-  - smtplib
-  - email.message
+### How to Use  
+1. Install required packages:
+   
+   pip install openpyxl pandas sendgrid python-dotenv
+   
+2. Update your file paths and email info inside the scripts:
+   
+  scorecard_path = "path/to/Scorecard.xlsx"
+  source_file_path = "path/to/source_file.xlsx"
+  sender_email = "your_verified_sendgrid_email"
+  api_key = "your_sendgrid_api_key"
 
-- Replace the following fields in the code with your own:
+3. Run the scripts:
+   
+   Scorecard_Automation.py
+   
+   Automated_Email_Report.py
+   
 
-   - sender_email = "your_verified_sendgrid_email"
-   - api_key = "your_sendgrid_api_key"
-   - recipient_email = "recipient@example.com"
-
-
-- Add your attachment path:
-
-   - attachment_path = "/Users/guoxinning/Desktop/report.xlsx"
-
-
-- Run:
-   - You’ll see “✅ Email sent successfully!” if it worked.
